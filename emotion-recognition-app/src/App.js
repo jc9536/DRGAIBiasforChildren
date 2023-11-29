@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect} from 'react';
-import { BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import Fonts from './fonts'
 import theme from './theme'
 import background from './images/BG.png'
@@ -676,7 +676,7 @@ function App() {
     return (
         <Box>
           {/* Use Chakra UI Image component */}
-        <Image mt={margin} src={imageSources[currentIndex]} alt={`Image ${currentIndex + 1}`} h="25vh" />
+        <Image mt={margin} src={imageSources[currentIndex]} alt={`Image ${currentIndex + 1}`} h="200px" />
         </Box>
     );
   };
@@ -687,8 +687,10 @@ function App() {
     return (
       <>
 
-        <Stack align='center' mt={4}>
-          <Text fontSize="6xl" as='b' align='center'>EmoTune: Speech Bias in AI</Text>
+        <Stack align='center' height="810px"
+          width="1500px"
+        >
+          <Text fontSize="6xl" as='b' align='center' mt={10}>EmoTune: Speech Bias in AI</Text>
           <Box
             borderRadius="xl"
             bg={'whiteAlpha.800'}
@@ -696,7 +698,7 @@ function App() {
             mb={2}
             maxW="1000px"><Text fontSize="lg" as='b' align='center'>Please choose a character from below as your companion to start an exciting journey in the world of AI bias!</Text>
           </Box>
-          <HStack mt={2} mb={2} spacing={6}>
+          <HStack mt={2} mb={4} spacing={6}>
             <IconButton colorScheme={selectedIcon === 'AIden' ? 'messenger' : 'gray'} fontSize='40px' icon={<PiFinnTheHumanDuotone />} size='lg' onClick={() => { handleIconClick('AIden'); playOrStopAudio(AIdenIntro); }} />
             <IconButton colorScheme={selectedIcon === 'Woofster' ? 'messenger' : 'gray'} fontSize='40px' icon={<LuDog />} size='lg' onClick={() => { handleIconClick('Woofster'); playOrStopAudio(WoofsterIntro); }} />
             <IconButton colorScheme={selectedIcon === 'Monstro' ? 'messenger' : 'gray'} fontSize='40px' icon={<FaSpaghettiMonsterFlying />} size='lg' onClick={() => { handleIconClick('Monstro'); playOrStopAudio(MonstroIntro); }} />
@@ -705,19 +707,18 @@ function App() {
           {selectedNarrationIntroText && !loading && selectedNarrationIntroText !== 'Error' && <Box
             borderRadius="xl"
             backgroundImage={speech}
-            display="flex"
             backgroundSize="100% 100%"
             justifyContent="top"
             alignItems="top"
-            h="25vh"
+            h="200px"
             p={10}
-            maxW="800px"><Text mt={-4} ml={4} fontSize="xl" align="center">{selectedNarrationIntroText}</Text></Box>}
+            maxW="900px"><Text mt={-4} ml={4} fontSize="xl" align="center">{selectedNarrationIntroText}</Text></Box>}
 
-          <Box mt={6} display={{ md: 'flex' }}>
+          <Box ml={36} display={{ md: 'flex' }}>
             <Box flexGrow={1}>
-              {selectedIcon === "AIden" && <ImageLoop imageSources={[AIden, AIden2]} />}
-              {selectedIcon === "Woofster" && <ImageLoop imageSources={[Woofster, Woofster2]} />}
-              {selectedIcon === "Monstro" && <ImageLoop imageSources={[Monstro, Monstro2]} />}
+              {selectedIcon === "AIden" && <ImageLoop margin={-4} imageSources={[AIden, AIden2]} />}
+              {selectedIcon === "Woofster" && <ImageLoop margin={-4} imageSources={[Woofster, Woofster2]} />}
+              {selectedIcon === "Monstro" && <ImageLoop margin={-4} imageSources={[Monstro, Monstro2]} />}
             </Box>
             <Box
               flexShrink={0}
@@ -750,8 +751,9 @@ function App() {
     // Content for Step 1
     return (
       <>
-        <Stack align='center' mt={50}>
-          <Text fontSize="6xl" as='b' align='center'>What Are We Doing Today?</Text>
+        <Stack align='center' height="810px"
+          width="1500px">
+          <Text fontSize="6xl" as='b' align='center' mt={12}>What Are We Doing Today?</Text>
           <br />
           <br />
           {promptText && !loading && promptText !== 'Error' && <Box borderRadius="xl"
@@ -760,7 +762,7 @@ function App() {
             backgroundSize="100% 100%"
             justifyContent="top"
             alignItems="top"
-            h="35vh"
+            h="275"
             p={10}
             maxW="900px"> <Text ml={4} mt={-2} fontSize="xl" align="center">{promptText}</Text></Box>}
           
@@ -783,17 +785,18 @@ function App() {
     // Content for Step 1
     return (
       <>
-        <Stack align='center' mt={12}>
-          <Text fontSize="6xl" as='b' align='center'>How Does AI Work?</Text>
+        <Stack align='center' height="810px"
+          width="1500px">
+          <Text fontSize="6xl" as='b' align='center' mt={10} mb={2}>How Does AI Work?</Text>
           {promptText1 && !loading && promptText1 !== 'Error' && <Box borderRadius="xl"
             backgroundImage={speech}
             display="flex"
             backgroundSize="100% 100%"
             justifyContent="top"
             alignItems="top"
-            h="42vh"
+            h="328px"
             p={10}
-            maxW="775px"> <Text ml={4} mt={-2} fontSize="xl" align="center">{promptText1}</Text></Box>}
+            maxW="900px"> <Text ml={4} mt={-2} fontSize="xl" align="center">{promptText1}</Text></Box>}
 
           {selectedIcon === "AIden" && <ImageLoop imageSources={[AIden, AIden2]} />}
           {selectedIcon === "Woofster" && <ImageLoop imageSources={[Woofster, Woofster2]} />}
@@ -940,22 +943,23 @@ function App() {
 
     return (
       <>
-        <Stack align='center' mt={6}>
-          <Text fontSize="6xl" as='b' align='center'>Let's Try It!</Text>
+        <Stack align='center' height="810px"
+          width="1500px">
+          <Text fontSize="6xl" as='b' align='center' mt={6}>Let's Try It!</Text>
           {promptText && !loading && promptText !== 'Error' && <Box borderRadius="xl"
             backgroundImage={speech}
             display="flex"
             backgroundSize="100% 100%"
             justifyContent="top"
             alignItems="top"
-            h="20vh"
+            h="160px"
             p={10}
-            maxW="775px"> <Text ml={4} fontSize="xl" align="center">{promptText2}</Text></Box>}
+            maxW="900px"> <Text ml={4} fontSize="xl" align="center">{promptText2}</Text></Box>}
           
           <br />
           
           {selectedIcon === "AIden" &&
-            <HStack mt={6} mb={28} spacing={6}>
+            <HStack mt={3} mb={24} spacing={6}>
               <Button colorScheme={selected === 'Happy' ? 'yellow' : 'gray'} leftIcon={<RiEmotionHappyLine />} size='lg' align='center' onClick={() => { audioRef.current.pause(); handleSelectClick('Happy') }}>
                 Happy
               </Button>
@@ -975,7 +979,7 @@ function App() {
           }
 
           {selectedIcon === "Woofster" &&
-            <HStack mt={6} mb={28} spacing={6}>
+            <HStack mt={3} mb={24} spacing={6}>
               <Button colorScheme={selected === 'English' ? 'yellow' : 'gray'} size='lg' align='center' onClick={() => { audioRef.current.pause(); handleSelectClick('English') }}>
                 English
               </Button>
@@ -998,7 +1002,7 @@ function App() {
           }
 
           {selectedIcon === "Monstro" &&
-            <HStack mt={6} mb={24} spacing={6}>
+            <HStack mt={3} mb={24} spacing={6}>
               <Button colorScheme={selected === 'American' ? 'yellow' : 'gray'} size='lg' align='center' onClick={() => { audioRef.current.pause(); handleSelectClick('American') }}>
                 🇺🇸 American
               </Button>
@@ -1037,7 +1041,7 @@ function App() {
                   onReRecord={() => { setEmotion(''); setAccent(''); setLaccent(''); setError(''); setAudioBlob(null); }} // Clear audioBlob on re-record
                 />
 
-                <Stack ml={18} spacing={12} direction='row' align='center' mt={12}>
+                <Stack ml={18} spacing={12} direction='row' align='center' mt={10}>
                   {audioBlob && <Button leftIcon={<TbAnalyze />} isLoading={loading} loadingText='Analyzing' colorScheme='teal' size='lg' align='center' onClick={analyzeVoice} isDisabled={loading}>
                     Analyze
                   </Button>}
@@ -1063,20 +1067,21 @@ function App() {
 
     return (
       <>
-        <Stack align='center' mt={12}>
-          {emotion && <Text mb={2} fontSize='2xl' as='b' mt={6}>Detected Emotion: {emotion}</Text>}
-          {accent && <Text mb={2} fontSize='2xl' as='b' mt={6}>Detected Accent: {accent}</Text>}
-          {laccent && <Text mb={2} fontSize='2xl' as='b' mt={6}>Detected Accent: {laccent}</Text>}
+        <Stack align='center' height="810px"
+          width="1500px">
+          {emotion && <Text mb={6} fontSize='5xl' as='b' mt={12}>Detected Emotion: {emotion}</Text>}
+          {accent && <Text mb={6} fontSize='5xl' as='b' mt={12}>Detected Accent: {accent}</Text>}
+          {laccent && <Text mb={6} fontSize='5xl' as='b' mt={12}>Detected Accent: {laccent}</Text>}
           {classificationText && <Box backgroundImage={speech}
             display="flex"
             backgroundSize="100% 100%"
             justifyContent="top"
             alignItems="top"
-            h="30vh"
+            h="250px"
             p={10}
-            maxW="775px"> <Text mt={-2} fontSize='xl' as='i' align="center">{classificationText}</Text></Box>}
+            maxW="900px"> <Text mt={-2} ml={3} fontSize='xl' as='i' align="center">{classificationText}</Text></Box>}
           
-          <HStack w={720} ml={64} mt={14} mb={-12} spacing={-12}>
+          <HStack w={720} ml={64} mt={3} spacing={-12}>
             {selectedIcon !== "" && <ImageLoop margin={16} imageSources={classificationIMG} />}
             <Container maxW={350}>
               {varList && !loading && selectedIcon === 'AIden' && <EmotionBars emotions={varList} />}
@@ -1089,7 +1094,7 @@ function App() {
         {emotion === 'Error' && accent === 'Error' && laccent === 'Error' &&<Text mt={4} color="red.500">Error analyzing voice.</Text>}
           <Stack align='center'>
             {varList && !loading && varList !== 'Error' && (
-            <Button leftIcon={<FaCircleQuestion />} colorScheme='teal' size='lg' mt={112} align='center' isDisabled={loading} onClick={onOpen}>
+            <Button leftIcon={<FaCircleQuestion />} colorScheme='teal' size='lg' mt={-16} align='center' isDisabled={loading} onClick={onOpen}>
                 Was {selectedIcon} Right?
               </Button>
             )}
@@ -1139,26 +1144,23 @@ function App() {
     return (
       <>
         {selectedExplanation1 != null && playOrStopAudio(selectedExplanation1)}
-        <br />
-        <Container maxW="container.lg">
-          <Stack align='center' mt={6}>
-            <Text fontSize="6xl" as='b' align='center' mb={28}>{endingTitle}</Text>
+        <Stack align='center' height="810px"
+          width="1500px">
+          <Text fontSize="6xl" as='b' align='center' mt={12} mb={24}>{endingTitle}</Text>
             <Box
             backgroundImage={speech}
             display="flex"
             backgroundSize="100% 100%"
             justifyContent="top"
             alignItems="top"
-            h="19vh"
+            h="153px"
+            maxW="900px"
             p={12}><Text ml={4} mt={-2} fontSize="xl" align="center">{explanationText}</Text></Box>
             <br />
             <ImageLoop margin={12} imageSources={endingIMG} />
-          </Stack>
-        </Container>
 
-        <Stack spacing={4} mt={14} align='center'>
           {correct && <Link to="/step4a">
-            <Button variant='ghost' rightIcon={<FaAngleRight />} size='lg' align='center' onClick={() => playOrStopAudio(selectedExplanation2)}>
+            <Button variant='ghost' rightIcon={<FaAngleRight />} size='lg' align='center' mt={14} onClick={() => playOrStopAudio(selectedExplanation2)}>
               Next
             </Button>
           </Link>}
@@ -1171,29 +1173,26 @@ function App() {
 
     return (
       <>
-        <br />
-        <Container maxW="container.lg">
-          <Stack align='center' mt={4}>
-            <Text fontSize="6xl" as='b' align='center' mb={4}>Why Does This Happen with AI?</Text>
+        <Stack align='center' height="810px"
+          width="1500px">
+          <Text fontSize="6xl" as='b' align='center' mt={8} mb={4}>Why Does This Happen with AI?</Text>
             <Box
               backgroundImage={speech}
               display="flex"
               backgroundSize="100% 100%"
               justifyContent="top"
               alignItems="top"
-              h="38vh"
+            h="335px"
+            maxW="900px"
               p={12}><Text ml={4} fontSize="xl" align="center">{explanationText1}</Text></Box>
 
             <br />
-            {next && selectedIcon === "AIden" && <ImageLoop margin={-2} imageSources={[AIden, AIden2]} />}
-            {next && selectedIcon === "Woofster" && <ImageLoop margin={-2} imageSources={[Woofster, Woofster2]} />}
-            {next && selectedIcon === "Monstro" && <ImageLoop margin={-2} imageSources={[Monstro, Monstro2]} />}
-          </Stack>
-        </Container>
+            {next && selectedIcon === "AIden" && <ImageLoop margin={-9} imageSources={[AIden, AIden2]} />}
+          {next && selectedIcon === "Woofster" && <ImageLoop margin={-9} imageSources={[Woofster, Woofster2]} />}
+          {next && selectedIcon === "Monstro" && <ImageLoop margin={-9} imageSources={[Monstro, Monstro2]} />}
 
-        <Stack spacing={4} mt={14} align='center'>
           {correct && <Link to="/step4b">
-            <Button variant='ghost' rightIcon={<FaAngleRight />} size='lg' align='center' onClick={() => playOrStopAudio(selectedExplanation3)}>
+            <Button variant='ghost' rightIcon={<FaAngleRight />} size='lg' align='center' mt={12} onClick={() => playOrStopAudio(selectedExplanation3)}>
               Next
             </Button>
           </Link>}
@@ -1206,28 +1205,25 @@ function App() {
 
     return (
       <>
-        <Container maxW="container.lg">
-          <Stack align='center' mt={6}>
-            <Text fontSize="6xl" as='b' align='center' mb={24}>Let's Try It Again!</Text>
+        <Stack align='center' height="810px"
+          width="1500px">
+          <Text fontSize="6xl" as='b' align='center' mt={10} mb={24}>Let's Try It Again!</Text>
             <Box
               backgroundImage={speech}
               display="flex"
               backgroundSize="100% 100%"
               justifyContent="top"
               alignItems="top"
-              h="24vh"
+            h="200px"
+            maxW="900px"
               p={12}><Text ml={4} mt={-2} fontSize="xl" align="center">{explanationText2}</Text></Box>
 
-            <br />
-            {next && selectedIcon === "AIden" && <ImageLoop margin={12} imageSources={[AIden, AIden2]} />}
-            {next && selectedIcon === "Woofster" && <ImageLoop margin={12} imageSources={[Woofster, Woofster2]} />}
-            {next && selectedIcon === "Monstro" && <ImageLoop margin={12} imageSources={[Monstro, Monstro2]} />}
-          </Stack>
-        </Container>
+            {next && selectedIcon === "AIden" && <ImageLoop margin={10} imageSources={[AIden, AIden2]} />}
+            {next && selectedIcon === "Woofster" && <ImageLoop margin={10} imageSources={[Woofster, Woofster2]} />}
+            {next && selectedIcon === "Monstro" && <ImageLoop margin={10} imageSources={[Monstro, Monstro2]} />}
 
-        <Stack spacing={4} mt={14} align='center'>
           <Link to="/">
-            <Button variant='outline' rightIcon={<VscDebugRestart />} size='lg' align='center' onClick={() => {
+            <Button variant='outline' rightIcon={<VscDebugRestart />} size='lg' align='center' mt={14} onClick={() => {
               audioRef.current.pause();
               setSelected('');
               setAudioURL('');
@@ -1254,13 +1250,14 @@ function App() {
       <Box
         backgroundImage={background} // Replace with the path to your image file
         backgroundSize="cover" // Adjust as needed
-        backgroundPosition="center"
+        backgroundPosition="center center"
         backgroundRepeat="no-repeat" 
-        h="100vh" // Set the height of the container
-        display="flex"
-        flexDirection="column"
-        alignItems="top"
-        justifyContent="top"
+        height="810px"
+        width="1500px"
+        position="relative"
+        top="50%" // Center the background vertically
+        left="50%" // Center the background horizontally
+        transform="translate(-50%, 0%)" // Center the background precisely
       >
         <Router>
           <Routes>
