@@ -381,7 +381,7 @@ function App() {
           setSelectedExplanation3(MonstroExplanation_C3);
           return "Dear little creature, hello again! Hope this has been a clawsome journey for you. I am glad that I got the right answer in the end.";
         case 'no':
-          setEndingTitle("Woofster was Wrong!");
+          setEndingTitle("Monstro was Wrong!");
           setSelectedExplanation1(MonstroExplanation_W1);
           setSelectedExplanation2(MonstroExplanation_W2);
           setSelectedExplanation3(MonstroExplanation_W3);
@@ -571,7 +571,7 @@ function App() {
       // Handle accents for Woofster icon
       switch (correct) {
         case 'yes':
-          return [WoofsterYes, WoofsterYes2];
+          return [WoofsterYes2, WoofsterYes];
         case 'no':
           return [WoofsterNo, WoofsterNo2];
         default:
@@ -681,6 +681,30 @@ function App() {
     );
   };
 
+  const TypingAnimation = ({ originalText, typingSpeed }) => {
+    const [typedText, setTypedText] = useState('');
+
+    useEffect(() => {
+      let index = 0;
+      const typingInterval = typingSpeed || 100; // Use provided typing speed or default to 100 milliseconds
+
+      const typingTimer = setInterval(() => {
+        setTypedText(originalText.substring(0, index));
+        index++;
+
+        if (index > originalText.length) {
+          clearInterval(typingTimer);
+        }
+      }, typingInterval);
+
+      return () => {
+        clearInterval(typingTimer);
+      };
+    }, [originalText, typingSpeed]);
+
+    return <Text mt={-4} ml={4} fontSize="xl" align="center">{typedText}</Text>;
+  };
+
 
   // Define components for each step
   const Step1 = () => {
@@ -712,13 +736,13 @@ function App() {
             alignItems="top"
             h="200px"
             p={10}
-            maxW="900px"><Text mt={-4} ml={4} fontSize="xl" align="center">{selectedNarrationIntroText}</Text></Box>}
+            w="900px"><TypingAnimation originalText={selectedNarrationIntroText} typingSpeed={60} /></Box>}
 
           <Box ml={36} display={{ md: 'flex' }}>
             <Box flexGrow={1}>
               {selectedIcon === "AIden" && <ImageLoop margin={-4} imageSources={[AIden, AIden2]} />}
-              {selectedIcon === "Woofster" && <ImageLoop margin={-4} imageSources={[Woofster, Woofster2]} />}
-              {selectedIcon === "Monstro" && <ImageLoop margin={-4} imageSources={[Monstro, Monstro2]} />}
+              {selectedIcon === "Woofster" && <ImageLoop margin={-4} imageSources={[Woofster2, Woofster]} />}
+              {selectedIcon === "Monstro" && <ImageLoop margin={-4} imageSources={[Monstro2, Monstro]} />}
             </Box>
             <Box
               flexShrink={0}
@@ -764,11 +788,11 @@ function App() {
             alignItems="top"
             h="275"
             p={10}
-            maxW="900px"> <Text ml={4} mt={-2} fontSize="xl" align="center">{promptText}</Text></Box>}
+            w="900px"><TypingAnimation originalText={promptText} typingSpeed={55} /></Box>}
           
           {selectedIcon === "AIden" && <ImageLoop imageSources={[AIden, AIden2]} />}
-          {selectedIcon === "Woofster" && <ImageLoop imageSources={[Woofster, Woofster2]} />}
-          {selectedIcon === "Monstro" && <ImageLoop imageSources={[Monstro, Monstro2]} />}
+          {selectedIcon === "Woofster" && <ImageLoop imageSources={[Woofster2, Woofster]} />}
+          {selectedIcon === "Monstro" && <ImageLoop imageSources={[Monstro2, Monstro]} />}
 
           {selectedIcon !== null && <Link to="/step1b">
             <Button mt={12} variant='ghost' rightIcon={<FaAngleRight />} size='lg' align='center' onClick={() => playOrStopAudio(selectedPrompt2)}>
@@ -796,11 +820,11 @@ function App() {
             alignItems="top"
             h="328px"
             p={10}
-            maxW="900px"> <Text ml={4} mt={-2} fontSize="xl" align="center">{promptText1}</Text></Box>}
+            w="900px"><TypingAnimation originalText={promptText1} typingSpeed={55} /></Box>}
 
           {selectedIcon === "AIden" && <ImageLoop imageSources={[AIden, AIden2]} />}
-          {selectedIcon === "Woofster" && <ImageLoop imageSources={[Woofster, Woofster2]} />}
-          {selectedIcon === "Monstro" && <ImageLoop imageSources={[Monstro, Monstro2]} />}
+          {selectedIcon === "Woofster" && <ImageLoop imageSources={[Woofster2, Woofster]} />}
+          {selectedIcon === "Monstro" && <ImageLoop imageSources={[Monstro2, Monstro]} />}
 
           {selectedIcon !== null && <Link to="/step2">
             <Button mt={12} variant='ghost' rightIcon={<FaAngleRight />} size='lg' align='center' onClick={() => playOrStopAudio(selectedPrompt3)}>
@@ -954,7 +978,7 @@ function App() {
             alignItems="top"
             h="160px"
             p={10}
-            maxW="900px"> <Text ml={4} fontSize="xl" align="center">{promptText2}</Text></Box>}
+            w="900px"><TypingAnimation originalText={promptText2} typingSpeed={55} /></Box>}
           
           <br />
           
@@ -1024,8 +1048,8 @@ function App() {
           <Box display={{ md: 'flex' }}>
             <Box flexGrow={1}>
               {selectedIcon === "AIden" && <ImageLoop imageSources={[AIden, AIden2]} />}
-              {selectedIcon === "Woofster" && <ImageLoop imageSources={[Woofster, Woofster2]} />}
-              {selectedIcon === "Monstro" && <ImageLoop imageSources={[Monstro, Monstro2]} />}
+              {selectedIcon === "Woofster" && <ImageLoop imageSources={[Woofster2, Woofster]} />}
+              {selectedIcon === "Monstro" && <ImageLoop imageSources={[Monstro2, Monstro]} />}
             </Box>
             <Box
               flexShrink={0}
@@ -1079,7 +1103,7 @@ function App() {
             alignItems="top"
             h="250px"
             p={10}
-            maxW="900px"> <Text mt={-2} ml={3} fontSize='xl' as='i' align="center">{classificationText}</Text></Box>}
+            w="900px"><TypingAnimation originalText={classificationText} typingSpeed={60} /></Box>}
           
           <HStack w={720} ml={64} mt={3} spacing={-12}>
             {selectedIcon !== "" && <ImageLoop margin={16} imageSources={classificationIMG} />}
@@ -1154,8 +1178,8 @@ function App() {
             justifyContent="top"
             alignItems="top"
             h="153px"
-            maxW="900px"
-            p={12}><Text ml={4} mt={-2} fontSize="xl" align="center">{explanationText}</Text></Box>
+            w="900px"
+            p={12}><TypingAnimation originalText={explanationText} typingSpeed={55} /></Box>
             <br />
             <ImageLoop margin={12} imageSources={endingIMG} />
 
@@ -1183,13 +1207,13 @@ function App() {
               justifyContent="top"
               alignItems="top"
             h="335px"
-            maxW="900px"
-              p={12}><Text ml={4} fontSize="xl" align="center">{explanationText1}</Text></Box>
+            w="900px"
+            p={12}><TypingAnimation originalText={explanationText1} typingSpeed={55} /></Box>
 
             <br />
             {next && selectedIcon === "AIden" && <ImageLoop margin={-9} imageSources={[AIden, AIden2]} />}
-          {next && selectedIcon === "Woofster" && <ImageLoop margin={-9} imageSources={[Woofster, Woofster2]} />}
-          {next && selectedIcon === "Monstro" && <ImageLoop margin={-9} imageSources={[Monstro, Monstro2]} />}
+          {next && selectedIcon === "Woofster" && <ImageLoop margin={-9} imageSources={[Woofster2, Woofster]} />}
+          {next && selectedIcon === "Monstro" && <ImageLoop margin={-9} imageSources={[Monstro2, Monstro]} />}
 
           {correct && <Link to="/step4b">
             <Button variant='ghost' rightIcon={<FaAngleRight />} size='lg' align='center' mt={12} onClick={() => playOrStopAudio(selectedExplanation3)}>
@@ -1215,12 +1239,12 @@ function App() {
               justifyContent="top"
               alignItems="top"
             h="200px"
-            maxW="900px"
-              p={12}><Text ml={4} mt={-2} fontSize="xl" align="center">{explanationText2}</Text></Box>
+            w="900px"
+            p={12}><TypingAnimation originalText={explanationText2} typingSpeed={55} /></Box>
 
             {next && selectedIcon === "AIden" && <ImageLoop margin={10} imageSources={[AIden, AIden2]} />}
-            {next && selectedIcon === "Woofster" && <ImageLoop margin={10} imageSources={[Woofster, Woofster2]} />}
-            {next && selectedIcon === "Monstro" && <ImageLoop margin={10} imageSources={[Monstro, Monstro2]} />}
+            {next && selectedIcon === "Woofster" && <ImageLoop margin={10} imageSources={[Woofster2, Woofster]} />}
+            {next && selectedIcon === "Monstro" && <ImageLoop margin={10} imageSources={[Monstro2, Monstro]} />}
 
           <Link to="/">
             <Button variant='outline' rightIcon={<VscDebugRestart />} size='lg' align='center' mt={14} onClick={() => {
