@@ -118,7 +118,7 @@ import MonstroExplanation_W3 from "./Audio/Explain/Monstro/wrong_3.wav"
 async function emotionAPI(audioBlob) {
   console.log('Current audioBlob state:', audioBlob);
   try {
-    const response = await fetch("https://api-inference.huggingface.co/models/chin-may/wav2vec2-audio-emotion-classification", {
+    const response = await fetch("https://uq8iuvqnm4yaa5gu.us-east-1.aws.endpoints.huggingface.cloud", {
       headers: { Authorization: "Bearer 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" },
       method: 'POST',
       body: audioBlob,
